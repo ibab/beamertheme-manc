@@ -180,11 +180,11 @@
 
 % Environments
 % Environment for a plain frame with dark background
-\newenvironment{darkframe}{%
+\newenvironment{darkframe}[1][]{%
 \setbeamercolor{background canvas}{bg=manPurple}%
 \setbeamercolor{normal text}{fg=white}%
 \usebeamercolor[fg]{normal text}
-\begin{frame}[plain]{}%
+\begin{frame}[plain,#1]{}%
 }
 {\end{frame}}
 
