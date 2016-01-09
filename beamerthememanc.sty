@@ -51,26 +51,34 @@
 \usetikzlibrary{positioning}
 
 % Fonts
-\usepackage{fontspec}%	
-\usefonttheme{professionalfonts} 
+\usepackage{fontspec}
+\usefonttheme{professionalfonts}
 \usepackage{unicode-math}
-%\newfontfamily\Light{Source Sans Pro Light}%
-%\newfontfamily\Regular{Source Sans Pro}%
-%\newfontfamily\Bold{Source Sans Pro Bold}%
-\newfontfamily\Hair{Fira Sans Hair}%
-\newfontfamily\Light{Fira Sans Light}%
-\newfontfamily\ExtraLight{Fira Sans ExtraLight}%
-\newfontfamily\LightItalic{Fira Sans Light Italic}%
-\newfontfamily\Regular{Fira Sans Book}%
-\newfontfamily\Bold{Fira Sans Bold}%
-%\setsansfont{Source Sans Pro}%
-%\setmonofont[Scale=MatchLowercase]{Source Code Pro}%
-%\setmathfont{Latin Modern Math}
-\setsansfont{Fira Sans}%
-\setmonofont[Scale=MatchLowercase]{Fira Mono}%
+\newfontfamily\Light[
+  BoldFont={Fira Sans Book},
+  ItalicFont={Fira Sans Light Italic},
+  BoldItalicFont={Fira Sans Book Italic},
+]{Fira Sans Light}
+\newfontfamily\ExtraLight[
+  BoldFont={Fira Sans Light},
+  ItalicFont={Fira Sans ExtraLight Italic},
+  BoldItalicFont={Fira Sans Light Italic},
+]{Fira Sans ExtraLight}
+\newfontfamily\Regular{Fira Sans Book}
+\newfontfamily\Bold{Fira Sans Bold}
+\setsansfont[
+  BoldFont={Fira Sans Bold},
+  ItalicFont={Fira Sans Book Italic},
+  BoldItalicFont={Fira Sans Bold Italic},
+]{Fira Sans}
+\setmonofont[
+  Scale=MatchLowercase,
+]{Fira Mono}
 \setmathfont{Latin Modern Math}
+
 \setbeamerfont{title}{family=\ExtraLight,size=\fontsize{36}{43}}
-\setbeamerfont{subtitle}{family=\LightItalic,size=\fontsize{16}{18}}
+\setbeamerfont{subtitle}{family=\Light,size=\fontsize{16}{18}}
+\setbeamerfont{large text}{family=\ExtraLight,size=\fontsize{36}{43}}
 \setbeamerfont{date}{family=\Light,size=\fontsize{12}{14}}
 \setbeamerfont{author}{family=\Light,size=\fontsize{14}{16}}
 \setbeamerfont{institute}{family=\Light,size=\fontsize{14}{16}}
@@ -89,7 +97,7 @@
   \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{title page}%
     \ifx\inserttitle\@empty%
     \else%
-      {\usebeamerfont{title}\inserttitle\par}%
+      {\usebeamerfont{title}\setbeamercolor{math text}{parent=palette1}\inserttitle\par}%
     \fi%
     \vspace{1em}
     \ifx\insertsubtitle\@empty%
