@@ -1,0 +1,84 @@
+
+\documentclass[compress,aspectratio=1610]{beamer}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\usepackage[english]{isodate}\isodate
+
+% Don't count backup slides into to the total
+\usepackage{appendixnumberbeamer}
+
+\usetheme[
+  %fullfootline,
+]{manc}
+
+\linespread{1.1}
+
+% Grid for tikz graphics
+%
+%\setbeamertemplate{background canvas}{
+%    \begin{tikzpicture}[remember picture, overlay]
+%        \draw[help lines,xstep=.25,ystep=.25,gray!20] (current page.south west) grid (current page.north east);
+%        \draw[help lines,xstep=1,ystep=1,gray!50] (current page.south west) grid (current page.north east);
+%        \foreach \x in {-15,-14.5,...,15} {
+%            \node [anchor=north, gray] at (\x,0) {\tiny \x};
+%            \node [anchor=west,gray] at (0,\x) {\tiny \x};
+%        }
+%    \end{tikzpicture}
+%}
+
+\title{Manc}
+\subtitle{An elegant beamer theme}
+\date{\today}
+\author[Researcher]{A. Researcher\footnotemark[1]}
+\institute{\footnotemark[1]\texttt{mymail@myuniversity.edu}}
+\titlegraphic{\includegraphics[width=10em]{./graphics/manchester.pdf}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Some text}
+	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem  ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\end{frame}
+
+\begin{frame}{Boxes and columns}
+  \begin{block}{A useful formula\footnote[frame]{Useful indeed!}...}
+    \begin{equation*}
+      A = \int^{}\mathrm{e}^{\mathrm{i} S[x] / \hbar}\,Dx \hspace{4em} S[x] = \int^{T}_0 L[x(t)]\,\mathrm{d}t
+    \end{equation*}
+    \centering
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+  \end{block}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item Stet clita kasd gubergren
+        \item No sea takimata sanctus est
+          \begin{itemize}
+            \item Bla
+          \end{itemize}
+        \item Lorem ipsum dolor sit amet
+        \item Labore et dolore magna aliquyam erat
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{darkframe}
+  \centering
+  \usebeamerfont{title}\textit{Thanks for listening!}
+\end{darkframe}
+
+\appendix
+\begin{darkframe}
+  \centering
+  \usebeamerfont{title} Appendix
+\end{darkframe}
+
+
+\end{document}
+

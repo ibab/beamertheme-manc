@@ -1,0 +1,192 @@
+
+\ProvidesPackage{beamerthememanc}[2016/01/08]
+
+\mode<presentation>
+
+% Process options
+\newif\if@fullfootline\@fullfootlinefalse
+\DeclareOption{fullfootline}{\@fullfootlinetrue}
+\ProcessOptions
+
+% Table of contents
+\useoutertheme[subsection=false,shadow]{miniframes}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+% Itemize
+%\setbeamertemplate{itemize item}{→}
+%\setbeamertemplate{itemize subitem}{→}
+%\setbeamertemplate{itemize subsubitem}{→}
+\setbeamertemplate{itemize item}{\textbullet}
+\setbeamertemplate{itemize subitem}{\textbullet}
+\setbeamertemplate{itemize subsubitem}{\textbullet}
+\setlength{\parskip}{0.5em}
+
+% Colors
+\definecolor{manDarkGrey}{rgb}{0.3019607844,0.2803921571,0.258823530}
+\definecolor{manPurple}{HTML}{522795}
+\definecolor{manPurpleLight}{HTML}{E1D2F8}
+\definecolor{manGold}{HTML}{FFD700}
+\setbeamercolor{normal text}{fg=manDarkGrey}
+\setbeamercolor{math text}{parent=normal text}
+\setbeamercolor{structure}{fg=manPurple}
+\setbeamercolor{palette1}{fg=white, bg=manPurple}
+\setbeamercolor{palette2}{fg=manDarkGrey,bg=manPurpleLight}
+\setbeamercolor{alert1}{fg=white,bg=manGold}
+\setbeamercolor{title page}{parent=palette1}
+\setbeamercolor{title}{parent=normal text}
+\setbeamercolor{subtitle}{parent=normal text}
+\setbeamercolor{institute}{parent=normal text}
+\setbeamercolor{frametitle}{fg=white,bg=manPurple}
+\setbeamercolor{block title}{parent=palette1}
+\setbeamercolor{block body}{parent=palette2}
+
+% Title graphic
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1pt}
+\setlength{\TPVertModule}{1pt}
+
+% Tikz
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+% Fonts
+\usepackage{fontspec}%	
+\usefonttheme{professionalfonts} 
+\usepackage{unicode-math}
+%\newfontfamily\Light{Source Sans Pro Light}%
+%\newfontfamily\Regular{Source Sans Pro}%
+%\newfontfamily\Bold{Source Sans Pro Bold}%
+\newfontfamily\Hair{Fira Sans Hair}%
+\newfontfamily\Light{Fira Sans Light}%
+\newfontfamily\ExtraLight{Fira Sans ExtraLight}%
+\newfontfamily\LightItalic{Fira Sans Light Italic}%
+\newfontfamily\Regular{Fira Sans Book}%
+\newfontfamily\Bold{Fira Sans Bold}%
+%\setsansfont{Source Sans Pro}%
+%\setmonofont[Scale=MatchLowercase]{Source Code Pro}%
+%\setmathfont{Latin Modern Math}
+\setsansfont{Fira Sans}%
+\setmonofont[Scale=MatchLowercase]{Fira Mono}%
+\setmathfont{Latin Modern Math}
+\setbeamerfont{title}{family=\ExtraLight,size=\fontsize{36}{43}}
+\setbeamerfont{subtitle}{family=\LightItalic,size=\fontsize{16}{18}}
+\setbeamerfont{date}{family=\Light,size=\fontsize{12}{14}}
+\setbeamerfont{author}{family=\Light,size=\fontsize{14}{16}}
+\setbeamerfont{institute}{family=\Light,size=\fontsize{14}{16}}
+\setbeamerfont{section title}{size=\LARGE}
+\setbeamerfont{frametitle}{family=\Regular,size=\Large,shape=\scshape}
+\setbeamerfont{block title}{family=\Regular,size=\large}
+\setbeamerfont{caption name}{family=\Regular}
+\setbeamerfont{pagenumber}{family=\Regular,size=\fontsize{12}{14}}
+
+% Titlepage
+\def\maketitle{\ifbeamer@inframe\titlepage\else\frame[plain]{\titlepage}\fi}
+\def\titlepage{\usebeamertemplate{title page}}
+\setbeamertemplate{title page}
+{%
+\begin{minipage}[t][\paperheight]{\textwidth}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{title page}%
+    \ifx\inserttitle\@empty%
+    \else%
+      {\usebeamerfont{title}\inserttitle\par}%
+    \fi%
+    \vspace{1em}
+    \ifx\insertsubtitle\@empty%
+    \else%
+      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+    \fi%
+    \vspace{3em}
+    \ifx\insertauthor\@empty%
+    \else%
+      {\usebeamerfont{author}\insertauthor\par}%
+    \fi%
+    \vspace{0.5em}
+    \ifx\insertinstitute\@empty%
+    \else%
+      {\usebeamerfont{institute}\insertinstitute\par}%
+    \fi% 
+    \vspace{1em}
+    \ifx\insertdate\@empty%
+    \else%
+      {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+    \fi% 
+    \vspace{4em}
+    %\includegraphics[width=8em]{manchester.pdf}
+  \end{beamercolorbox}%
+\end{minipage}%
+  \begin{textblock}{1}(330, 10)
+    \inserttitlegraphic
+  \end{textblock}
+}
+
+% Frametitle
+\setbeamertemplate{frametitle}
+{%
+\nointerlineskip % This one's tricky
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=3ex,dp=1.5ex]{frametitle}
+  \usebeamerfont{frametitle}{\setbeamercolor{math text}{parent=palette1}\insertframetitle}%
+\end{beamercolorbox}
+}
+
+% Footline
+\usenavigationsymbolstemplate{}
+\setbeamertemplate{footline}
+{%
+\leavevmode%
+\if@fullfootline%
+  \begin{beamercolorbox}[wd=.2\paperwidth, ht=1.8em, dp=1em, left, leftskip=1em]{normal text}%
+  \insertshortauthor%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.6\paperwidth, ht=1.8em, dp=1em, center]{}%
+  \insertshorttitle%
+  \end{beamercolorbox}%
+\else%
+  \hfill
+\fi%
+\begin{beamercolorbox}[wd=.2\paperwidth, ht=1.8em, dp=1em, right, rightskip=1em]{}%
+  \usebeamerfont{pagenumber}\insertframenumber{} / \inserttotalframenumber%
+\end{beamercolorbox}%
+}
+
+% Blocks
+\setbeamertemplate{block begin}
+{%
+  \setbeamercolor{item}{parent=block body}
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title}
+    \usebeamerfont*{block title}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.4ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body}%
+}
+\setbeamertemplate{block end}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+% Captions
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}  % get rid of 'figure:' under figures
+\captionsetup[subfigure]{labelformat=empty}  % and subfigures
+\captionsetup[table]{labelformat=empty}  % same for tables
+
+% Headline
+\setbeamertemplate{headline}{}
+
+% Footnotes
+% We don't need a footnoterule
+\renewcommand{\footnoterule}{}
+
+% Environments
+% Environment for a plain frame with dark background
+\newenvironment{darkframe}{%
+\setbeamercolor{background canvas}{bg=manPurple}%
+\setbeamercolor{normal text}{fg=white}%
+\usebeamercolor[fg]{normal text}
+\begin{frame}[plain]{}%
+}
+{\end{frame}}
+
+\mode
+<all>
