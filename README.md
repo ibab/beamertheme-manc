@@ -11,4 +11,5 @@ This is an unofficial theme, the University of Manchester logo is copyright of t
 ![demo_01](./demo_01.png)
 ![demo_02](./demo_02.png)
 ![demo_03](./demo_03.png)
+![demo_04](./demo_04.png)
 
