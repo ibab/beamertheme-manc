@@ -124,7 +124,7 @@
 \setbeamertemplate{frametitle}
 {%
 \nointerlineskip % This one's tricky
-\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=3ex,dp=1.5ex]{frametitle}
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=2.4ex,dp=1.1ex]{frametitle}
   \usebeamerfont{frametitle}{\setbeamercolor{math text}{parent=palette1}\insertframetitle}%
 \end{beamercolorbox}
 }
@@ -145,7 +145,7 @@
   \hfill
 \fi%
 \begin{beamercolorbox}[wd=.2\paperwidth, ht=1.8em, dp=1em, right, rightskip=1em]{}%
-  \usebeamerfont{pagenumber}\insertframenumber{} / \inserttotalframenumber%
+  \usebeamerfont{pagenumber}\insertframenumber{}\kern-1pt/\kern-1pt\inserttotalframenumber%
 \end{beamercolorbox}%
 }
 
@@ -154,7 +154,7 @@
 {%
   \setbeamercolor{item}{parent=block body}
   \par\vskip\medskipamount%
-  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title}
+  \begin{beamercolorbox}[sep=.5ex,ht=3.1ex,dp=0.4ex,leftskip=0.2cm,rightskip=0.5ex]{block title}
     \usebeamerfont*{block title}\insertblocktitle%
   \end{beamercolorbox}%
   {\parskip0pt\par}%
