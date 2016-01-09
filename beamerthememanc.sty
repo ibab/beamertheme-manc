@@ -89,7 +89,6 @@
 \setbeamerfont{pagenumber}{family=\Regular,size=\fontsize{12}{14}}
 
 % Titlepage
-\def\maketitle{\ifbeamer@inframe\titlepage\else\frame[plain]{\titlepage}\fi}
 \def\titlepage{\usebeamertemplate{title page}}
 \setbeamertemplate{title page}
 {%
@@ -123,7 +122,7 @@
     %\includegraphics[width=8em]{manchester.pdf}
   \end{beamercolorbox}%
 \end{minipage}%
-  \begin{textblock}{1}(330, 10)
+  \begin{textblock}{1}(365, 10)
     \inserttitlegraphic
   \end{textblock}
 }
@@ -162,7 +161,7 @@
 {%
   \setbeamercolor{item}{parent=block body}
   \par\vskip\medskipamount%
-  \begin{beamercolorbox}[sep=.5ex,ht=3.1ex,dp=0.4ex,leftskip=0.2cm,rightskip=0.5ex]{block title}
+  \begin{beamercolorbox}[sep=.5ex,ht=3.1ex,dp=0.4ex,leftskip=0.2cm,rightskip=0.5ex]{block title}%
     \usebeamerfont*{block title}\insertblocktitle%
   \end{beamercolorbox}%
   {\parskip0pt\par}%
