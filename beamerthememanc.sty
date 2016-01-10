@@ -23,15 +23,22 @@
 \setlength{\parskip}{0.5em}
 
 % Colors
-\definecolor{manDarkGrey}{rgb}{0.3019607844,0.2803921571,0.258823530}
+\colorlet{manDarkGrey}{black!80!white}
+%\definecolor{manDarkGrey}{rgb}{0.3019607844,0.2803921571,0.258823530}
 \definecolor{manPurple}{HTML}{522795}
-\definecolor{manPurpleLight}{HTML}{E1D2F8}
+\definecolor{manLightPurple}{HTML}{E1D2F8}
 \definecolor{manGold}{HTML}{FFD700}
+\colorlet{manYellow}{yellow!70!red}
+
+\setbeamercolor{palette1}{fg=white, bg=manPurple}
+\setbeamercolor{palette2}{fg=manDarkGrey,bg=white}
+\setbeamercolor{palette3}{fg=manDarkGrey,bg=manYellow}
+\setbeamercolor{palette4}{fg=manDarkGrey,bg=white}
+\setbeamercolor{palette5}{fg=manDarkGrey,bg=manLightPurple}
+
 \setbeamercolor{normal text}{fg=manDarkGrey}
 \setbeamercolor{math text}{parent=normal text}
 \setbeamercolor{structure}{fg=manPurple}
-\setbeamercolor{palette1}{fg=white, bg=manPurple}
-\setbeamercolor{palette2}{fg=manDarkGrey,bg=manPurpleLight}
 \setbeamercolor{alert1}{fg=white,bg=manGold}
 \setbeamercolor{title page}{parent=palette1}
 \setbeamercolor{title}{parent=normal text}
@@ -40,6 +47,8 @@
 \setbeamercolor{frametitle}{fg=white,bg=manPurple}
 \setbeamercolor{block title}{parent=palette1}
 \setbeamercolor{block body}{parent=palette2}
+\setbeamercolor{block title example}{parent=palette3}
+\setbeamercolor{block body example}{parent=palette4}
 
 % Title graphic
 \usepackage[absolute,overlay]{textpos}
@@ -76,9 +85,12 @@
 ]{Fira Mono}
 \setmathfont{Latin Modern Math}
 
-\setbeamerfont{title}{family=\ExtraLight,size=\fontsize{36}{43}}
+% Boxes
+\usepackage{tcolorbox}
+
+\setbeamerfont{title}{family=\Regular,size=\fontsize{36}{43}}
 \setbeamerfont{subtitle}{family=\Light,size=\fontsize{16}{18}}
-\setbeamerfont{quote}{family=\Light,size=\fontsize{16}{18}}
+\setbeamerfont{quote}{family=\Light,size=\fontsize{15}{16}}
 \setbeamerfont{large text}{family=\ExtraLight,size=\fontsize{36}{43}}
 \setbeamerfont{date}{family=\Light,size=\fontsize{12}{14}}
 \setbeamerfont{author}{family=\Light,size=\fontsize{14}{16}}
@@ -88,6 +100,67 @@
 \setbeamerfont{block title}{family=\Regular,size=\large}
 \setbeamerfont{caption name}{family=\Regular}
 \setbeamerfont{pagenumber}{family=\Regular,size=\fontsize{12}{14}}
+
+% replace beamer blocks with tcolorboxes
+\newtcolorbox{myblock}[2][]{
+  leftright skip=2mm,
+  before skip=5mm,
+  after skip=5mm,
+  boxrule=2pt,
+  sharp corners,
+  fonttitle=\usebeamerfont{block title},
+  fontupper=\usebeamerfont{block body},
+  fontlower=\usebeamerfont{block body},
+  boxsep=.5mm,
+  lefttitle=2mm,
+  adjusted title={#2},
+  #1,
+}
+
+\renewenvironment{block}[2][]{%
+  \usebeamercolor{block body}%
+  \usebeamercolor{block title}%
+  \tcbset{%
+    colback=block body.bg,
+    colframe=block title.bg,
+    coltext=block body.fg,
+    colbacktitle=block title.bg,
+    coltitle=block title.fg,
+  }%
+  \begin{myblock}[#1]{#2}
+}{%
+  \par
+  \end{myblock}
+}
+\renewenvironment{alertblock}[2][]{%
+  \usebeamercolor{block body alerted}
+  \usebeamercolor{block title alerted}
+  \tcbset{%
+    colback=block body alerted.bg,
+    colframe=block title alerted.bg,
+    coltext=block body.fg,
+    colbacktitle=block title alerted.bg,
+    coltitle=block title alerted.fg ,
+  }%
+  \begin{myblock}[#1]{#2}
+}{%
+  \par
+  \end{myblock}
+}
+\renewenvironment{exampleblock}[2][]{%
+  \usebeamercolor{block body example}
+  \usebeamercolor{block title example}
+  \tcbset{%
+    colback=block body example.bg,
+    colframe=block title example.bg,
+    coltext=block body.fg,
+    colbacktitle=block title example.bg,
+    coltitle=block title example.fg ,
+  }%
+  \begin{myblock}[#1]{#2}
+}{%
+  \end{myblock}
+}
 
 % Titlepage
 \def\titlepage{\usebeamertemplate{title page}}
@@ -109,21 +182,19 @@
     \else%
       {\usebeamerfont{author}\insertauthor\par}%
     \fi%
-    \vspace{0.5em}
     \ifx\insertinstitute\@empty%
     \else%
       {\usebeamerfont{institute}\insertinstitute\par}%
     \fi% 
-    \vspace{1em}
+    \vspace{1.2em}
     \ifx\insertdate\@empty%
     \else%
       {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
     \fi% 
-    \vspace{4em}
-    %\includegraphics[width=8em]{manchester.pdf}
+    \vspace{3.2em}
   \end{beamercolorbox}%
 \end{minipage}%
-  \begin{textblock}{1}(365, 10)
+  \begin{textblock}{1}(15,15)
     \inserttitlegraphic
   \end{textblock}
 }

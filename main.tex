@@ -1,15 +1,18 @@
 \documentclass[compress,aspectratio=1610]{beamer}
 
 \usepackage{polyglossia}
+\usepackage{csquotes}
 \setmainlanguage{english}
 \usepackage[english]{isodate}\isodate
 \usepackage{appendixnumberbeamer}
+\usepackage{tikz-feynman}
+\usepackage{hyperref}
 
 \usetheme[
   %fullfootline,
 ]{manc}
 
-\linespread{1.15}
+\linespread{1.1}
 
 \title{Manc}
 \subtitle{\textit{An elegant beamer theme}}
@@ -17,61 +20,75 @@
 \author{A. Researcher}
 \institute{\texttt{mymail@myuniversity.edu}}
 % \titlegraphic{\includegraphics[width=10em]{./graphics/manchester.pdf}}
-\titlegraphic{\includegraphics[width=7em]{./graphics/lhcb.pdf}}
+\titlegraphic{\includegraphics[width=10em]{./graphics/manchester.pdf}}
 
 \begin{document}
 
 \begin{frame}[plain,noframenumbering]
   \titlepage
-  \begin{textblock}{1}(15,10)
-    \includegraphics[width=10em]{./graphics/manchester.pdf}
-  \end{textblock}
 \end{frame}
 
 \begin{frame}
-  \hfill
-  \begin{beamercolorbox}[
-    leftskip=0.4cm,
-    rightskip=0.4cm,
-    wd=27em,
-    ht=8em,
-    dp=1em,
-  ]{block body}
+  \centering
+  \usebeamercolor{palette5}%
+  \tcbset{%
+    colback=palette5.bg,
+    colframe=palette5.bg,
+    coltext=palette5.fg,
+  }%
+  \begin{tcolorbox}[
+    before skip=10mm,
+    after skip=10mm,
+    boxrule=2pt,
+    sharp corners,
+    fonttitle=\usebeamerfont{block title},
+    fontupper=\usebeamerfont{block body},
+    fontlower=\usebeamerfont{block body},
+    boxsep=.5mm,
+    parbox=false,
+    width=26em,
+  ]
     \usebeamerfont{quote}
-    The first principle is that you must not fool yourself — and you are the easiest person to fool.\\
-    \hfill — Richard Feynman
-  \end{beamercolorbox}
-  \hfill{}
+    \enquote{If a machine is expected to be infallible, it cannot also be intelligent.}\\
+    \hfill \textup{— Alan Turing}
+  \end{tcolorbox}
 \end{frame}
 
-\begin{frame}{Some text}
-	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem  ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\begin{frame}{The Manc beamer theme}
+  \emph{Manc} is a minimal theme for the \LaTeX{} beamer document class that emphasizes simplicity, legibility and elegance.
+
+  \emph{Simplicity} is achieved by a flat design that makes use of a limited palette of colors. The footline is reduced to a page counter only, getting rid of superfluous information like the author's name or the title of the presentation.
+  The frame title is to be used as an \emph{accent}, ideally marking slides that contain key information.
+
+  \emph{Legibility} is critically important for a presentation theme.
+  \emph{Manc} improves legibility by using high contrasts, simplifying visual components (like blocks) and enlarging the frame counter compared to the default beamer themes.
+
+  Several elements, like the frame title and the choice of Fira Sans as the typeface are taken from the \emph{metropolis} theme.
 \end{frame}
 
-\begin{frame}{Blocks and columns}
+\begin{frame}[fragile]
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \begin{block}{Two useful formulas...}
-        \begin{gather*}
-          A = \int^{}\mathrm{e}^{\mathrm{i} S[x] / \hbar}\,Dx \\
-          S[x] = \int^{T}_0 L[x(t)]\,\mathrm{d}t
-        \end{gather*}
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr.\footnote[frame]{Lorem ipsum dolor sit amet, consetetur sadipscing elitr.}
+      \begin{block}{Block}
+        This is a simple block created using the \texttt{block} environment.
       \end{block}
+      \begin{exampleblock}{Example block}
+        This is an example block created using the \texttt{exampleblock} environment.
+      \end{exampleblock}
     \end{column}
     \begin{column}{0.5\textwidth}
-      Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+      \emph{Manc} replaces the default beamer blocks with boxes from the \href{https://www.ctan.org/pkg/tcolorbox}{\texttt{tcolorbox}} package.
+      These can be configured in much more detail than a \texttt{beamercolorbox}
+      \medskip
 
-      \begin{itemize}
-        \item Stet clita kasd gubergren
-          \begin{itemize}
-            \item No sea takimata sanctus est
-          \end{itemize}
-        \item Lorem ipsum dolor sit amet
-        \item Labore et dolore magna aliquyam erat, sed diam nonumy eirmod tempor invidunt ut labore.
-      \end{itemize}
+      Use boxes sparingly to highlight specific pieces of information (theorems, formulas, commands, …) that you want your audience to remember.\footnote[frame]{Add footnotes by using \texttt{\backslash footnote[frame]\{…\}}}
     \end{column}
   \end{columns}
+\end{frame}
+
+\begin{frame}
+  \centering
+  \includegraphics[width=0.9\textwidth]{./graphics/self-replicating.png}
 \end{frame}
 
 \begin{darkframe}[noframenumbering]
@@ -79,11 +96,11 @@
   \usebeamerfont{large text}\textit{Thanks for listening!}
 \end{darkframe}
 
-\appendix
-\begin{darkframe}
-  \centering
-  \usebeamerfont{large text} Appendix
-\end{darkframe}
+%\appendix
+%\begin{darkframe}
+%  \centering
+%  \usebeamerfont{large text} Appendix
+%\end{darkframe}
 
 \end{document}
 
