@@ -10,14 +10,37 @@ Lots of ideas have been taken from
  - [The metropolis theme](https://github.com/matze/mtheme)
  - [The tudoposter theme](https://github.com/MaxNoe/tudoposter)
 
-## Demo
+## Using the theme
 
-See [demo.pdf](./demo.pdf) or the rendered images below.
+You can use this theme by including
+```latex
+\usebeamertheme{manc}
+```
+in the header of your presentation.
 
-![demo_00](./demo_00.png)
-![demo_01](./demo_01.png)
-![demo_02](./demo_02.png)
-![demo_03](./demo_03.png)
-![demo_04](./demo_04.png)
-![demo_04](./demo_05.png)
+The theme also accepts various boolean and keyword options in the form
+```latex
+\usebeamertheme[booleanOption,keywordOption=value]{manc}
+```
+Here is a table of all currently supported options:
+
+Option | Type | Description
+--- | --- | ---
+`fullfootline` | Bool | Activates footline information (short title, short author).
+`background` | Keyword | Sets a picture as the title background. If this option is not given, the primary color is used to create a solid background.
+`brightbackground` | Bool | Whether the background is bright. By default, the text on the title page will use a bright foreground color. If it is given, then a dark color is used.
+`primaryColor` | Keyword | The primary color to use for the theme. Defaults to a Manchester purple.
+`primaryLightColor` | Keyword | This is intended to be a lighter version of the primary color.
+
+## Demos
+
+See [default_demo.pdf](./default_demo.pdf) for the default look of the theme:
+
+[![default](./default_demo-0.jpg)](./default_demo.pdf)
+
+See [forest_demo.pdf](./forest_demo.pdf) for a version of the same
+presentation, but with customized options. The title background image is by
+[Frances Gunn](https://unsplash.com/francesgunn).
+
+[![custom](./default_custom-0.jpg)](./default_custom.pdf)
 

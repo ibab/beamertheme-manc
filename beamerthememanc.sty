@@ -3,10 +3,15 @@
 
 \mode<presentation>
 
+\usepackage{kvoptions}
+
 % Process options
-\newif\if@fullfootline\@fullfootlinefalse
-\DeclareOption{fullfootline}{\@fullfootlinetrue}
-\ProcessOptions
+\DeclareBoolOption{fullfootline}
+\DeclareBoolOption{brightbackground}
+\DeclareStringOption{background}
+\DeclareStringOption[522795]{primaryColor}
+\DeclareStringOption[E1D2F8]{primaryLightColor}
+\ProcessKeyvalOptions*
 
 % Table of contents
 \useoutertheme[subsection=false,shadow]{miniframes}
@@ -24,27 +29,27 @@
 
 % Colors
 \colorlet{manDarkGrey}{black!90!white}
-%\definecolor{manDarkGrey}{rgb}{0.3019607844,0.2803921571,0.258823530}
-\definecolor{manPurple}{HTML}{522795}
-\definecolor{manLightPurple}{HTML}{E1D2F8}
-\definecolor{manGold}{HTML}{FFD700}
-\colorlet{manYellow}{yellow!70!red}
+\definecolor{manPrimary}{HTML}{\beamerthememanc@primaryColor}
+\definecolor{manPrimaryLight}{HTML}{\beamerthememanc@primaryLightColor}
+\colorlet{manSecondary}{yellow!70!red}
 
-\setbeamercolor{palette1}{fg=white, bg=manPurple}
+\setbeamercolor{palette1}{fg=white, bg=manPrimary}
 \setbeamercolor{palette2}{fg=manDarkGrey,bg=white}
-\setbeamercolor{palette3}{fg=manDarkGrey,bg=manYellow}
+\setbeamercolor{palette3}{fg=manDarkGrey,bg=manSecondary}
 \setbeamercolor{palette4}{fg=manDarkGrey,bg=white}
-\setbeamercolor{palette5}{fg=manDarkGrey,bg=manLightPurple}
+\setbeamercolor{palette5}{fg=manDarkGrey,bg=manPrimaryLight}
 
 \setbeamercolor{normal text}{fg=manDarkGrey}
 \setbeamercolor{math text}{parent=normal text}
-\setbeamercolor{structure}{fg=manPurple}
-\setbeamercolor{alert1}{fg=white,bg=manGold}
+\setbeamercolor{structure}{fg=manPrimary}
+\setbeamercolor{alert1}{fg=white,bg=manSecondary}
 \setbeamercolor{title page}{parent=palette1}
-\setbeamercolor{title}{parent=normal text}
-\setbeamercolor{subtitle}{parent=normal text}
-\setbeamercolor{institute}{parent=normal text}
-\setbeamercolor{frametitle}{fg=white,bg=manPurple}
+\setbeamercolor{title}{parent=palette1}
+\setbeamercolor{subtitle}{parent=palette1}
+\setbeamercolor{author}{parent=palette1}
+\setbeamercolor{institute}{parent=palette1}
+\setbeamercolor{date}{parent=palette1}
+\setbeamercolor{frametitle}{fg=white,bg=manPrimary}
 \setbeamercolor{block title}{parent=palette1}
 \setbeamercolor{block body}{parent=palette2}
 \setbeamercolor{block title example}{parent=palette3}
@@ -58,6 +63,7 @@
 % Tikz
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
 
 % Fonts
 \usepackage{microtype}
@@ -86,7 +92,7 @@
   BoldFont={Fira Sans Bold},
   ItalicFont={Fira Sans Book Italic},
   BoldItalicFont={Fira Sans Bold Italic},
-]{Fira Sans}
+]{Fira Sans Light}
 \newfontfamily\Display{Open Sans Condensed Bold}
 \setmonofont[
   Scale=MatchLowercase,
@@ -98,8 +104,8 @@
 
 \setbeamerfont{title}{family=\Display,size=\fontsize{40}{45}}
 \setbeamerfont{subtitle}{family=\Light,size=\fontsize{14}{16}}
-\setbeamerfont{quote}{family=\Light,size=\fontsize{15}{16}}
-\setbeamerfont{large text}{family=\ExtraLight,size=\fontsize{36}{43}}
+\setbeamerfont{quote}{family=\Regular,size=\fontsize{12}{14}}
+\setbeamerfont{large text}{family=\ExtraLight,size=\fontsize{26}{30}}
 \setbeamerfont{date}{family=\Light,size=\fontsize{12}{14}}
 \setbeamerfont{author}{family=\SemiBold,size=\fontsize{12}{14}}
 \setbeamerfont{institute}{family=\Light,size=\fontsize{12}{14}}
@@ -174,34 +180,51 @@
 \def\titlepage{\usebeamertemplate{title page}}
 \setbeamertemplate{title page}
 {%
-\begin{minipage}[t][\paperheight]{\textwidth}
-  \begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,center]{title page}%
+  \ifthenelse{\equal{\beamerthememanc@background}{}}{%
+    \tikz[
+        overlay,
+        remember picture,
+        show background rectangle,
+        background rectangle/.style={fill=manPrimary},
+    ]{}%
+  }{%
+    \tikz[
+        overlay,
+        remember picture,
+        show background rectangle,
+        background rectangle/.style={fill=black},
+    ] \node[opacity=0.65,at=(current page.center)] {
+      \includegraphics[height=\paperheight,width=\paperwidth]{\beamerthememanc@background}
+    };%
+  }%
+  \begin{minipage}[t][\paperheight]{\textwidth}
+    \vspace{7em}
+    \centering
     \ifx\inserttitle\@empty%
     \else%
-      {\usebeamerfont{title}\setbeamercolor{math text}{parent=palette1}\inserttitle\par}%
+        {\usebeamercolor[fg]{title}\usebeamerfont{title}\setbeamercolor{math text}{parent=palette1}\inserttitle\par}%
     \fi%
-    \vspace{1em}
+    \vspace{0.5em}
     \ifx\insertsubtitle\@empty%
     \else%
-      {\usebeamerfont{subtitle}\insertsubtitle\par}%
+      {\usebeamercolor[fg]{subtitle}\usebeamerfont{subtitle}\insertsubtitle\par}%
     \fi%
-    \vspace{3em}
+    \vspace{3.25em}
     \ifx\insertauthor\@empty%
     \else%
-      {\usebeamerfont{author}\insertauthor\par}%
+      {\usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\par}%
     \fi%
     \ifx\insertinstitute\@empty%
     \else%
-      {\usebeamerfont{institute}\insertinstitute\par}%
+      {\usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\par}%
     \fi% 
-    \vspace{3em}
+    \vspace{3.25em}
     \ifx\insertdate\@empty%
     \else%
-      {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+      {\usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\par}%
     \fi% 
     \vspace{2em}
-  \end{beamercolorbox}%
-\end{minipage}%
+  \end{minipage}%
   \begin{textblock}{1}(15,15)
     \inserttitlegraphic
   \end{textblock}
@@ -211,7 +234,7 @@
 \setbeamertemplate{frametitle}
 {%
 \nointerlineskip % This one's tricky
-\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=2.4ex,dp=1.1ex]{frametitle}
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.3cm,rightskip=0.3cm,ht=2.2ex,dp=0.9ex]{frametitle}
   \usebeamerfont{frametitle}{\setbeamercolor{math text}{parent=palette1}\insertframetitle}%
 \end{beamercolorbox}
 }
@@ -221,7 +244,7 @@
 \setbeamertemplate{footline}
 {%
 \leavevmode%
-\if@fullfootline%
+\ifbeamerthememanc@fullfootline%
   \begin{beamercolorbox}[wd=.2\paperwidth, ht=1.8em, dp=1em, left, leftskip=1em]{normal text}%
   \insertshortauthor%
   \end{beamercolorbox}%
@@ -268,7 +291,7 @@
 % Environments
 % Environment for a plain frame with dark background
 \newenvironment{darkframe}[1][]{%
-\setbeamercolor{background canvas}{bg=manPurple}%
+\setbeamercolor{background canvas}{bg=manPrimary}%
 \setbeamercolor{normal text}{fg=white}%
 \usebeamercolor[fg]{normal text}
 \begin{frame}[plain,#1]{}%
