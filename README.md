@@ -34,13 +34,13 @@ Option | Type | Description
 
 ## Demos
 
-See [default_demo.pdf](./default_demo.pdf) for the default look of the theme:
+See [default_demo.pdf](./demo_default.pdf) for the default look of the theme:
 
-[![default](./default_demo-0.jpg)](./default_demo.pdf)
+[![default](./demo_default-0.jpg)](./demo_custom.pdf)
 
-See [forest_demo.pdf](./forest_demo.pdf) for a version of the same
+See [forest_demo.pdf](./demo_forest.pdf) for a version of the same
 presentation, but with customized options. The title background image is by
 [Frances Gunn](https://unsplash.com/francesgunn).
 
-[![custom](./default_custom-0.jpg)](./default_custom.pdf)
+[![custom](./demo_custom-0.jpg)](./demo_custom.pdf)
 
