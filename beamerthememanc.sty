@@ -23,7 +23,7 @@
 \setlength{\parskip}{0.5em}
 
 % Colors
-\colorlet{manDarkGrey}{black!80!white}
+\colorlet{manDarkGrey}{black!90!white}
 %\definecolor{manDarkGrey}{rgb}{0.3019607844,0.2803921571,0.258823530}
 \definecolor{manPurple}{HTML}{522795}
 \definecolor{manLightPurple}{HTML}{E1D2F8}
@@ -60,9 +60,16 @@
 \usetikzlibrary{positioning}
 
 % Fonts
+\usepackage{microtype}
+
 \usepackage{fontspec}
 \usefonttheme{professionalfonts}
 \usepackage{unicode-math}
+\newfontfamily\SemiBold[
+  BoldFont={Fira Sans Bold},
+  ItalicFont={Fira Sans SemiBold Italic},
+  BoldItalicFont={Fira Sans Bold Italic},
+]{Fira Sans SemiBold}
 \newfontfamily\Light[
   BoldFont={Fira Sans Book},
   ItalicFont={Fira Sans Light Italic},
@@ -80,6 +87,7 @@
   ItalicFont={Fira Sans Book Italic},
   BoldItalicFont={Fira Sans Bold Italic},
 ]{Fira Sans}
+\newfontfamily\Display{Open Sans Condensed Bold}
 \setmonofont[
   Scale=MatchLowercase,
 ]{Fira Mono}
@@ -88,13 +96,13 @@
 % Boxes
 \usepackage{tcolorbox}
 
-\setbeamerfont{title}{family=\Regular,size=\fontsize{36}{43}}
-\setbeamerfont{subtitle}{family=\Light,size=\fontsize{16}{18}}
+\setbeamerfont{title}{family=\Display,size=\fontsize{40}{45}}
+\setbeamerfont{subtitle}{family=\Light,size=\fontsize{14}{16}}
 \setbeamerfont{quote}{family=\Light,size=\fontsize{15}{16}}
 \setbeamerfont{large text}{family=\ExtraLight,size=\fontsize{36}{43}}
 \setbeamerfont{date}{family=\Light,size=\fontsize{12}{14}}
-\setbeamerfont{author}{family=\Light,size=\fontsize{14}{16}}
-\setbeamerfont{institute}{family=\Light,size=\fontsize{14}{16}}
+\setbeamerfont{author}{family=\SemiBold,size=\fontsize{12}{14}}
+\setbeamerfont{institute}{family=\Light,size=\fontsize{12}{14}}
 \setbeamerfont{section title}{size=\LARGE}
 \setbeamerfont{frametitle}{family=\Regular,size=\Large,shape=\scshape}
 \setbeamerfont{block title}{family=\Regular,size=\large}
@@ -186,12 +194,12 @@
     \else%
       {\usebeamerfont{institute}\insertinstitute\par}%
     \fi% 
-    \vspace{1.2em}
+    \vspace{3em}
     \ifx\insertdate\@empty%
     \else%
       {\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
     \fi% 
-    \vspace{3.2em}
+    \vspace{2em}
   \end{beamercolorbox}%
 \end{minipage}%
   \begin{textblock}{1}(15,15)
